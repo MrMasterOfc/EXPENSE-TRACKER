@@ -1,0 +1,123 @@
+ <style>
+/* Background color for odd items */
+.list-group-item:nth-child(odd) {
+  background-color: #f8f9fa;
+}
+
+/* Background color for even items */
+.list-group-item:nth-child(even) {
+  background-color: #ffffff; 
+}
+
+/* Remove border from list items */
+.list-group-item {
+  border: none; 
+}
+
+/* Remove border from the list */
+.list-group {
+  border: none; 
+}
+
+  </style>
+
+{{>message}}
+
+<div class="container d-flex justify-content-center">
+
+<!-- dropdown box -->
+    <div class="col-md-3 d-flex justify-content-center align-items-center m-5">
+      <form action="/Expense-Tracker" method="GET" id="sortForm" onchange="submitForm()" >
+        <select class="form-select" name="sortBy" id="sortBy" aria-label="category">
+          <!-- options -->
+          <option value="housing_asc">Housing and Utilities</option>
+          <option value="transportation_asc">Transportation and Commuting</option>
+          <option value="leisure_asc">Leisure and Entertainment</option>
+          <option value="food_asc">Food and Dining</option>
+          <option value="others_asc">Others</option>
+          <option value="name_asc">Name ( A -> Z )</option>
+          <option value="name_desc">Name ( Z -> A )</option>
+          <option value="date_asc">Date ( OLD -> NEW )</option>
+          <option value="date_desc">Date ( NEW -> OLD )</option>
+          <option value="amount_asc">Amount ( LOW -> HIGH )</option>
+          <option value="amount_desc">Amount ( HIGH -> LOW )</option>
+         </select>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="totalAmount d-flex justify-content-center mb-4">
+Total Amount: 
+<span class="m-2 text-warning" style="font-size: 40px;">{{ totalAmount }}</span>
+</div>
+
+<div class="container d-flex justify-content-center">
+
+  <ul class="list-group list-group-flush">
+    {{#each expenses as |expense|}}
+      <li class="list-group-item d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+          <div class="m-3 text-info">
+           <i class="{{expense.icon}}" style="font-size: 24px;"></i>
+            </div>
+             <div class="flex-grow-1">
+              <div>{{expense.name}}</div>
+               <div class="text-muted">{{expense.formattedDate}}</div>
+                </div>
+                 </div>
+                  <div class="m-3">
+                    {{expense.amount}}
+                      </div>
+                    <div class="ml-3">
+                  <a href="/Expense-Tracker/{{ expense.id }}/edit" class="btn btn-outline-primary">Edit</a>
+                <form action="/Expense-Tracker/{{ expense.id }}?_method=DELETE" method="POST" style="display: inline;">
+              <button type="submit" class="btn btn-outline-danger ml-2" onclick="return confirmDelete();">Delete</button>
+            </form>
+          </div>
+        </li>
+      {{/each}}
+     </ul>
+   </div>
+</div>
+
+<div class="d-flex justify-content-center m-4">
+  <a href="/Expense-Tracker/new" class="btn btn-warning btn-lg" role="button">Add Expense</a>
+</div>
+
+<div class="d-flex justify-content-center align-items-center my-4">
+  <form action="/Expense-Tracker" method="GET" style="display: inline;">
+    <input type="hidden" name="page" value="{{prev}}">
+    <button type="submit" class="btn btn-outline-secondary btn-sm mx-2">Prev</button>
+  </form>
+
+  <span class="mx-3">Page {{page}}</span>
+
+  <form action="/Expense-Tracker" method="GET" style="display: inline;">
+    <input type="hidden" name="page" value="{{next}}">
+    <button type="submit" class="btn btn-outline-secondary btn-sm mx-2">Next</button>
+  </form>
+</div>
+
+</div>
+
+<script>
+function submitForm() {
+  document.querySelector("#sortForm").submit();
+}
+
+function confirmDelete() {
+  return confirm("Are you sure you want to delete this expense?");
+}
+
+// When the user selects an option from the dropdown box, that option will be retained.
+const urlParams = new URLSearchParams(window.location.search)
+console.log(urlParams.get('sortBy'))
+const options = document.querySelectorAll('option')
+const target = Array.from(options).find((element) => {
+  return element.value === urlParams.get('sortBy')
+})
+console.log(target)
+target.selected = true
+
+</script>

@@ -1,0 +1,65 @@
+{{>message}}
+<div class="container-fluid d-flex justify-content-center align-items-center vh-100">
+  <form action="/Expense-Tracker/{{expense.id}}?_method=PUT" method="POST" class="p-4 shadow-lg bg-light rounded" style="width: 400px;">
+
+    <div class="row mb-4">
+      <div class="col-12 text-center">
+        <small class="text-muted">* required</small>
+      </div>
+    </div>
+
+    <div class="row mb-4">
+      <div class="col-4 text-right">
+        <label for="name" class="col-form-label">Name * :</label>
+      </div>
+      <div class="col-8">
+        <input id="name" class="form-control" type="text" placeholder="Please enter the name of the item." name="name" value="{{expense.name}}" required>
+      </div>
+    </div>
+
+    <div class="row mb-4">
+      <div class="col-4 text-right">
+        <label for="date" class="col-form-label">Date * :</label>
+      </div>
+      <div class="col-8">
+        <input id="date" class="form-control" type="date" name="date" value="{{expense.formattedDate}}" required>
+      </div>
+    </div>
+
+    <div class="row mb-4">
+      <div class="col-4 text-right">
+        <label for="category" class="col-form-label">Category * :</label>
+      </div>
+      <div class="col-8">
+        <select id="category" class="form-control" name="categoryId" required>
+          <option disabled selected value="">Select a category *</option>
+          <option value="1" {{#if (eq expense.categoryId 1)}}selected{{/if}}>Housing and Utilities</option>
+          <option value="2" {{#if (eq expense.categoryId 2)}}selected{{/if}}>Transportation and Commuting</option>
+          <option value="3" {{#if (eq expense.categoryId 3)}}selected{{/if}}>Leisure and Entertainment</option>
+          <option value="4" {{#if (eq expense.categoryId 4)}}selected{{/if}}>Food and Dining</option>
+          <option value="5" {{#if (eq expense.categoryId 5)}}selected{{/if}}>Others</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row mb-4">
+      <div class="col-4 text-right">
+        <label for="amount" class="col-form-label">Amount * :</label>
+      </div>
+      <div class="col-8">
+        <input id="amount" class="form-control" type="text" placeholder="Please enter the price of the item." name="amount" value="{{expense.amount}}" required>
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-8 text-center">
+        <button type="submit" class="btn btn-primary btn-block">Save</button>
+      </div>
+    </div>
+
+   <div class="text-center mt-4">
+    <a href="javascript:history.back()" class="text-secondary" style="text-decoration: none;">Back to Home Page</a>
+  </div>
+
+  </form>
+</div>

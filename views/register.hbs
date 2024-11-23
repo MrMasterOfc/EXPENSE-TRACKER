@@ -1,0 +1,38 @@
+<h1 class="mb-1 text-center mb-5 mt-5">Register</h1>
+
+{{> message}}
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 offset-md-4">
+      <form action="/users" method="POST" class="form-group">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" name="name" id="name" class="form-control" placeholder="Enter name">
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" class="form-control" placeholder="Enter email" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" name="password" id="password" class="form-control" placeholder="Enter password" required>
+        </div>
+        <div class="form-group">
+          <label for="confirmPassword">Confirm password</label>
+          <input type="password" name="confirmPassword" id="confirmPassword" class="form-control" placeholder="Confirm password" required>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Register</button>
+      </form>
+
+      <form action="/login/facebook" method="GET" class="mt-3">
+        <button type="submit" class="btn btn-primary">Facebook Login</button>
+      </form>
+
+      <div class="mt-3">
+        <span>Already have an account?</span>
+        <a href="/login" class="text-decoration-none">Login</a>
+      </div>
+    </div>
+  </div>
+</div>

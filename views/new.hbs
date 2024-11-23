@@ -1,0 +1,69 @@
+{{>message}}
+<div class="container-fluid d-flex justify-content-center align-items-center vh-100">
+  <div class="p-4 shadow-lg bg-light rounded" style="width: 450px; margin: 50px;">
+
+    <form action="/Expense-Tracker" method="POST">
+
+      <div class="row mb-4">
+        <div class="col-12 text-center">
+          <small class="text-muted">* required</small>
+        </div>
+      </div>
+
+      <div class="row mb-4">
+        <div class="col-4 text-right">
+          <label for="name" class="col-form-label">Name * :</label>
+        </div>
+        <div class="col-8">
+          <input id="name" class="form-control" type="text" placeholder="Please enter the name of the item." name="name" style="width: 270px;" required>
+        </div>
+      </div>
+
+      <div class="row mb-4">
+        <div class="col-4 text-right">
+          <label for="date" class="col-form-label">Date * :</label>
+        </div>
+        <div class="col-8">
+          <input id="date" class="form-control" type="date" name="date" style="width: 270px;" required>
+        </div>
+      </div>
+
+      <div class="row mb-4">
+        <div class="col-4 text-right">
+          <label for="category" class="col-form-label">Category * :</label>
+        </div>
+        <div class="col-8">
+         <select id="category" class="form-control" name="categoryId" style="width: 270px;" required>
+          <option disabled selected value="">Select a category *</option>
+          <option value="1">Housing and Utilities</option>
+          <option value="2">Transportation and Commuting</option>
+          <option value="3">Leisure and Entertainment</option>
+          <option value="4">Food and Dining</option>
+          <option value="5">Others</option>
+         </select>
+
+        </div>
+      </div>
+
+      <div class="row mb-4">
+        <div class="col-4 text-right">
+          <label for="amount" class="col-form-label">Amount * :</label>
+        </div>
+        <div class="col-8">
+          <input id="amount" class="form-control" type="text" placeholder="Please enter the price of the item." name="amount" style="width: 270px;" required>
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-8 text-center">
+          <button type="submit" class="btn btn-primary btn-block" style="width: 200px;">Add</button>
+        </div>
+      </div>
+    </form>
+
+   <div class="text-center mt-4">
+    <a href="javascript:history.back()" class="text-secondary" style="text-decoration: none;">Back to Home Page</a>
+  </div>
+
+   </div>
+</div>
