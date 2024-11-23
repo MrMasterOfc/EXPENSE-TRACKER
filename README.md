@@ -27,7 +27,7 @@ This project requires the following software to be installed:
    
 2. Navigate to the project directory:
    ```shell
-   cd expense-tracker
+   cd EXPENSE-TRACKER
    
 3. Install the necessary dependencies:
    ```shell
